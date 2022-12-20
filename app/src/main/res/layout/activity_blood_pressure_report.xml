@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="vm"
+  //          type="com.ssionii.bloodNote.ui.state.report.ReportViewModel" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+
+        <include
+            android:id="@+id/act_report_toolbar"
+            layout="@layout/toolbar_back" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#eeeeee" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="26dp"
+                    android:background="@drawable/border_30_ef5261"
+                    android:orientation="horizontal">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/act_report_cl_week"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/bg_30_maincolor"
+                        dateType="@{0}"
+                        //isWeak="@{vm.isWeak()}">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginHorizontal="43dp"
+                            android:layout_marginVertical="10dp"
+                            android:fontFamily="@font/noto_sans_kr_medium"
+                            android:text="주간"
+                            android:textColor="@color/white"
+                            android:textSize="14dp"
+                            dateType="@{0}"
+                            //isWeak="@{vm.isWeak()}"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+                    //</androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/act_report_cl_month"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@color/transparent"
+                        dateType="@{1}"
+                        isWeak="@{vm.isWeak()}">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginHorizontal="43dp"
+                            android:layout_marginVertical="10dp"
+                            android:fontFamily="@font/noto_sans_kr_medium"
+                            android:text="월간"
+                            android:textColor="@color/mainColor"
+                            android:textSize="14dp"
+                            dateType="@{1}"
+                            isWeak="@{vm.isWeak()}"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="36dp"
+                    android:fontFamily="@font/noto_sans_kr_medium"
+                    android:text="전체 추세"
+                    android:textColor="@color/black1"
+                    android:textSize="16sp" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginTop="10dp"
+                    android:gravity="center_vertical"
+                    android:layout_gravity="right">
+                    <ImageView
+                        android:layout_width="5dp"
+                        android:layout_height="5dp"
+                        android:background="@color/mainColor"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="최고"
+                        android:textSize="12dp"
+                        android:layout_marginLeft="6dp"
+                        android:fontFamily="@font/noto_sans_kr_regular"/>
+
+                    <ImageView
+                        android:layout_width="5dp"
+                        android:layout_height="5dp"
+                        android:background="@color/noon"
+                        android:layout_marginLeft="10dp"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="맥박"
+                        android:textSize="12dp"
+                        android:layout_marginLeft="6dp"
+                        android:fontFamily="@font/noto_sans_kr_regular"/>
+
+                    <ImageView
+                        android:layout_width="5dp"
+                        android:layout_height="5dp"
+                        android:background="@color/afternoon"
+                        android:layout_marginLeft="10dp"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="최저"
+                        android:textSize="12dp"
+                        android:layout_marginLeft="6dp"
+                        android:fontFamily="@font/noto_sans_kr_regular"/>
+                </LinearLayout>
+
+<!--                <com.github.mikephil.charting.charts.LineChart-->
+<!--                    android:id="@+id/act_report_chart"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="300dp"-->
+<!--                    android:layout_marginTop="6dp"/>-->
+
+                <RelativeLayout
+                    android:id="@+id/act_report_rl_char_empty"
+                    android:visibility="gone"
+                    android:layout_width="match_parent"
+                    android:layout_height="306dp">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="분석할 데이터가 부족합니다."
+                        android:fontFamily="@font/noto_sans_kr_regular"
+                        android:layout_centerInParent="true"/>
+                </RelativeLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="혈압 단위 : mmHg"
+                    android:layout_gravity="end"
+                    android:layout_marginRight="10dp"
+                    android:textColor="@color/gray2"
+                    android:textSize="12dp"
+                    android:fontFamily="@font/noto_sans_kr_medium"/>
+            </LinearLayout>
+    </LinearLayout>
+</layout>

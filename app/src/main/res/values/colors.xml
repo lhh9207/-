@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#6200EE</color>
+    <color name="colorPrimaryDark">#3700B3</color>
+    <color name="colorAccent">#03DAC5</color>
+
+    <color name="mainColor">#EF5261</color>
+    <color name="white">#ffffff</color>
+    <color name="black">#000000</color>
+    <color name="black1">#333333</color>
+    <color name="black2">#444444</color>
+    <color name="gray1">#666666</color>
+    <color name="gray2">#999999</color>
+    <color name="gray3">#cccccc</color>
+    <color name="gray4">#eeeeee</color>
+    <color name="transparent">#00000000</color>
+
+    <color name="morning">#EF5261</color>
+    <color name="noon">#FFAA22</color>
+    <color name="afternoon">#80B5FF</color>
+    <color name="night">#BD6AD6</color>
+</resources>

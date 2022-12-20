@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="vm"
+            type="com.ssionii.bloodNote.ui.write.WriteBloodViewModel" />
+    </data>
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white">
+
+        <include
+            android:id="@+id/act_write_blood_sugar_toolbar"
+            layout="@layout/toolbar_back"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <View
+            android:id="@+id/act_write_blood_sugar_toolbar_border"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#dddddd"
+            app:layout_constraintTop_toBottomOf="@+id/act_write_blood_sugar_toolbar" />
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintTop_toBottomOf="@+id/act_write_blood_sugar_toolbar_border"
+            app:layout_constraintBottom_toTopOf="@+id/act_write_blood_sugar_cl_done">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingBottom="40dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="20dp"
+                    android:fontFamily="@font/noto_sans_kr_regular"
+                    android:text="현재 시간을 선택해주세요"
+                    android:textColor="@color/black1"
+                    android:textSize="16sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/act_write_blood_sugar_rv_time"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginHorizontal="19dp"
+                    android:layout_marginTop="12dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="20dp"
+                    android:fontFamily="@font/noto_sans_kr_regular"
+                    android:text="식전/식후를 선택해주세요"
+                    android:textColor="@color/black1"
+                    android:textSize="16sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="19dp"
+                    android:layout_marginTop="12dp"
+                    android:orientation="horizontal">
+
+                    <RelativeLayout
+                        android:id="@+id/act_write_blood_sugar_rl_before_meal"
+                        android:layout_width="match_parent"
+                        android:layout_height="42dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/border_4_dddddd"
+                        getMeal="@{vm.getMeal.intValue()}"
+                        isBefore="@{true}">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerInParent="true"
+                            android:fontFamily="@font/noto_sans_kr_bold"
+                            android:text="식전"
+                            android:textColor="@color/black1"
+                            getMeal="@{vm.getMeal.intValue()}"
+                            android:textSize="16sp"
+                            isBefore="@{true}"/>
+
+                    </RelativeLayout>
+
+                    <View
+                        android:layout_width="6dp"
+                        android:layout_height="0dp" />
+
+                    <RelativeLayout
+                        android:id="@+id/act_write_blood_sugar_rl_after_meal"
+                        android:layout_width="match_parent"
+                        android:layout_height="42dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/border_4_dddddd"
+                        getMeal="@{vm.getMeal.intValue()}"
+                        isBefore="@{false}">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerInParent="true"
+                            android:fontFamily="@font/noto_sans_kr_bold"
+                            android:text="식후"
+                            android:textSize="16sp"
+                            android:textColor="@color/black1"
+                            getMeal="@{vm.getMeal.intValue()}"
+                            isBefore="@{false}"/>
+
+                    </RelativeLayout>
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="20dp"
+                    android:fontFamily="@font/noto_sans_kr_regular"
+                    android:text="측정값을 입력해주세요"
+                    android:textColor="@color/black1"
+                    android:textSize="16sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <EditText
+                    android:id="@+id/act_write_blood_sugar_et"
+                    android:layout_width="match_parent"
+                    android:layout_height="52dp"
+                    android:layout_marginHorizontal="80dp"
+                    android:layout_marginTop="12dp"
+                    android:background="@drawable/border_4_dddddd"
+                    android:fontFamily="@font/noto_sans_kr_bold"
+                    android:paddingLeft="10dp"
+                    android:inputType="number"
+                    android:textColor="@color/black1"
+                    android:textSize="24dp"
+                    android:textAlignment="center"/>
+
+
+            </LinearLayout>
+        </androidx.core.widget.NestedScrollView>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/act_write_blood_sugar_cl_done"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:background="@color/gray2"
+            app:layout_constraintBottom_toBottomOf="parent">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/noto_sans_kr_bold"
+                android:text="입력 완료"
+                android:textColor="@color/white"
+                android:textSize="18dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

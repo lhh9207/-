@@ -1,0 +1,811 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="vm"
+            type="com.ssionii.bloodNote.ui.state.report.ReportViewModel" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+
+        <include
+            android:id="@+id/act_report_toolbar"
+            layout="@layout/toolbar_back" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#eeeeee" />
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:overScrollMode="never">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="26dp"
+                    android:background="@drawable/border_30_ef5261"
+                    android:orientation="horizontal">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/act_report_cl_week"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/bg_30_maincolor"
+                        dateType="@{0}"
+                        isWeak="@{vm.isWeak()}">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginHorizontal="43dp"
+                            android:layout_marginVertical="10dp"
+                            android:fontFamily="@font/noto_sans_kr_medium"
+                            android:text="주간"
+                            android:textColor="@color/white"
+                            android:textSize="14dp"
+                            dateType="@{0}"
+                            isWeak="@{vm.isWeak()}"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/act_report_cl_month"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@color/transparent"
+                        dateType="@{1}"
+                        isWeak="@{vm.isWeak()}">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginHorizontal="43dp"
+                            android:layout_marginVertical="10dp"
+                            android:fontFamily="@font/noto_sans_kr_medium"
+                            android:text="월간"
+                            android:textColor="@color/mainColor"
+                            android:textSize="14dp"
+                            dateType="@{1}"
+                            isWeak="@{vm.isWeak()}"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="36dp"
+                    android:fontFamily="@font/noto_sans_kr_medium"
+                    android:text="전체 추세"
+                    android:textColor="@color/black1"
+                    android:textSize="16sp" />
+
+
+                <RelativeLayout
+                    android:id="@+id/act_report_rl_char_empty"
+                    android:visibility="gone"
+                    android:layout_width="match_parent"
+                    android:layout_height="320dp">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="분석할 데이터가 부족합니다."
+                        android:fontFamily="@font/noto_sans_kr_regular"
+                        android:layout_centerInParent="true"/>
+                </RelativeLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="#dddddd"
+                    android:layout_marginTop="20dp"/>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="8dp"
+                    android:background="#eeeeee" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="48dp"
+                    android:fontFamily="@font/noto_sans_kr_medium"
+                    android:text="평균 추세"
+                    android:textColor="@color/black1"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginBottom="2dp"
+                    android:fontFamily="@font/noto_sans_kr_regular"
+                    android:text="저번주에 비해 얼마나 좋아졌나요?"
+                    isWeak="@{vm.isWeak()}"
+                    type="@{0}"
+                    android:textColor="@color/gray2"
+                    android:textSize="14sp" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginBottom="24dp"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="36dp"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="22dp"
+                            android:background="@drawable/bg_20_maincolor">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginHorizontal="13dp"
+                                android:layout_marginVertical="6dp"
+                                android:fontFamily="@font/noto_sans_kr_bold"
+                                android:text="아침"
+                                android:textColor="@color/white"
+                                android:textSize="16sp"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="14dp"
+                            android:fontFamily="@font/noto_sans_kr_bold"
+                            android:text="식전"
+                            android:textColor="@color/black1"
+                            android:textSize="16sp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="12dp"
+                            android:fontFamily="@font/noto_sans_kr_bold"
+                            android:text="식후"
+                            android:textColor="@color/black1"
+                            android:textSize="16sp" />
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="22dp"
+                            android:background="@drawable/bg_20_nooncolor">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginHorizontal="13dp"
+                                android:layout_marginVertical="6dp"
+                                android:fontFamily="@font/noto_sans_kr_bold"
+                                android:text="점심"
+                                android:textColor="@color/white"
+                                android:textSize="16sp"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="14dp"
+                            android:fontFamily="@font/noto_sans_kr_bold"
+                            android:text="식전"
+                            android:textColor="@color/black1"
+                            android:textSize="16sp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="12dp"
+                            android:fontFamily="@font/noto_sans_kr_bold"
+                            android:text="식후"
+                            android:textColor="@color/black1"
+                            android:textSize="16sp" />
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="22dp"
+                            android:background="@drawable/bg_30_afternoon">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginHorizontal="13dp"
+                                android:layout_marginVertical="6dp"
+                                android:fontFamily="@font/noto_sans_kr_bold"
+                                android:text="저녁"
+                                android:textColor="@color/white"
+                                android:textSize="16sp"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="14dp"
+                            android:fontFamily="@font/noto_sans_kr_bold"
+                            android:text="식전"
+                            android:textColor="@color/black1"
+                            android:textSize="16sp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="12dp"
+                            android:fontFamily="@font/noto_sans_kr_bold"
+                            android:text="식후"
+                            android:textColor="@color/black1"
+                            android:textSize="16sp" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="30dp"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="20dp">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginHorizontal="13dp"
+                                android:layout_marginVertical="6dp"
+                                android:fontFamily="@font/noto_sans_kr_bold"
+                                android:text="저번주"
+                                isWeak="@{vm.isWeak()}"
+                                type="@{1}"
+                                android:textColor="@color/black1"
+                                android:textSize="16sp"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:fontFamily="@font/noto_sans_kr_bold"
+                            bloodSugarValue="@{vm.averageBloodSugarList[0]}"
+                            android:textColor="@color/gray2"
+                            android:textSize="18sp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="12dp"
+                            android:fontFamily="@font/noto_sans_kr_bold"
+                            bloodSugarValue="@{vm.averageBloodSugarList[1]}"
+                            android:textColor="@color/gray2"
+                            android:textSize="18sp" />
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="20dp">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginHorizontal="13dp"
+                                android:layout_marginVertical="6dp"
+                                android:fontFamily="@font/noto_sans_kr_bold"
+                                android:text="저번주"
+                                isWeak="@{vm.isWeak()}"
+                                type="@{1}"
+                                android:textColor="@color/black1"
+                                android:textSize="16sp"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:fontFamily="@font/noto_sans_kr_bold"
+                            bloodSugarValue="@{vm.averageBloodSugarList[2]}"
+                            android:textColor="@color/gray2"
+                            android:textSize="18sp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="12dp"
+                            android:fontFamily="@font/noto_sans_kr_bold"
+                            bloodSugarValue="@{vm.averageBloodSugarList[3]}"
+                            android:textColor="@color/gray2"
+                            android:textSize="18sp" />
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="21dp">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginHorizontal="13dp"
+                                android:layout_marginVertical="6dp"
+                                android:fontFamily="@font/noto_sans_kr_bold"
+                                android:text="저번주"
+                                isWeak="@{vm.isWeak()}"
+                                type="@{1}"
+                                android:textColor="@color/black1"
+                                android:textSize="16sp"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:fontFamily="@font/noto_sans_kr_bold"
+                            bloodSugarValue="@{vm.averageBloodSugarList[4]}"
+                            android:textColor="@color/gray2"
+                            android:textSize="18sp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="12dp"
+                            android:fontFamily="@font/noto_sans_kr_bold"
+                            bloodSugarValue="@{vm.averageBloodSugarList[5]}"
+                            android:textColor="@color/gray2"
+                            android:textSize="18sp" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="36dp"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="20dp">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginHorizontal="13dp"
+                                android:layout_marginVertical="6dp"
+                                android:fontFamily="@font/noto_sans_kr_bold"
+                                android:text="이번주"
+                                isWeak="@{vm.isWeak()}"
+                                type="@{2}"
+                                android:textColor="@color/black1"
+                                android:textSize="16sp"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:fontFamily="@font/noto_sans_kr_bold"
+                            bloodSugarValue="@{vm.averageBloodSugarList[6]}"
+                            android:textColor="@color/black2"
+                            android:textSize="18sp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="12dp"
+                            android:fontFamily="@font/noto_sans_kr_bold"
+                            bloodSugarValue="@{vm.averageBloodSugarList[7]}"
+                            android:textColor="@color/black2"
+                            android:textSize="18sp" />
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="20dp">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginHorizontal="13dp"
+                                android:layout_marginVertical="6dp"
+                                android:fontFamily="@font/noto_sans_kr_bold"
+                                android:text="이번주"
+                                isWeak="@{vm.isWeak()}"
+                                type="@{2}"
+                                android:textColor="@color/black1"
+                                android:textSize="16sp"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:fontFamily="@font/noto_sans_kr_bold"
+                            bloodSugarValue="@{vm.averageBloodSugarList[8]}"
+                            android:textColor="@color/black2"
+                            android:textSize="18sp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="12dp"
+                            android:fontFamily="@font/noto_sans_kr_bold"
+                            bloodSugarValue="@{vm.averageBloodSugarList[9]}"
+                            android:textColor="@color/black2"
+                            android:textSize="18sp" />
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="21dp">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginHorizontal="13dp"
+                                android:layout_marginVertical="6dp"
+                                android:fontFamily="@font/noto_sans_kr_bold"
+                                android:text="이번주"
+                                isWeak="@{vm.isWeak()}"
+                                type="@{2}"
+                                android:textColor="@color/black1"
+                                android:textSize="16sp"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:fontFamily="@font/noto_sans_kr_bold"
+                            bloodSugarValue="@{vm.averageBloodSugarList[10]}"
+                            android:textColor="@color/black2"
+                            android:textSize="18sp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="12dp"
+                            android:fontFamily="@font/noto_sans_kr_bold"
+                            bloodSugarValue="@{vm.averageBloodSugarList[11]}"
+                            android:textColor="@color/black2"
+                            android:textSize="18sp" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="20dp">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginHorizontal="13dp"
+                                android:layout_marginVertical="6dp"
+                                android:fontFamily="@font/noto_sans_kr_bold"
+
+                                android:textColor="@color/black1"
+                                android:textSize="16sp"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+                        <LinearLayout
+                            android:layout_width="50dp"
+                            android:layout_height="26dp"
+                            android:layout_marginTop="10dp"
+                            beforeValue="@{vm.averageBloodSugarList[0]}"
+                            afterValue="@{vm.averageBloodSugarList[6]}"
+                            android:gravity="center"
+                            android:orientation="horizontal">
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                beforeValue="@{vm.averageBloodSugarList[0]}"
+                                afterValue="@{vm.averageBloodSugarList[6]}" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="5dp"
+                                android:fontFamily="@font/noto_sans_kr_bold"
+                                android:textColor="@color/mainColor"
+                                android:textSize="16sp"
+                                beforeValue="@{vm.averageBloodSugarList[0]}"
+                                afterValue="@{vm.averageBloodSugarList[6]}"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="50dp"
+                            android:layout_height="26dp"
+                            android:layout_marginTop="10dp"
+                            beforeValue="@{vm.averageBloodSugarList[1]}"
+                            afterValue="@{vm.averageBloodSugarList[7]}"
+                            android:gravity="center"
+                            android:orientation="horizontal">
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                beforeValue="@{vm.averageBloodSugarList[1]}"
+                                afterValue="@{vm.averageBloodSugarList[7]}"/>
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="5dp"
+                                android:fontFamily="@font/noto_sans_kr_bold"
+                                beforeValue="@{vm.averageBloodSugarList[1]}"
+                                afterValue="@{vm.averageBloodSugarList[7]}"
+                                android:textColor="@color/afternoon"
+                                android:textSize="16sp"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+                        </LinearLayout>
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="15dp">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginHorizontal="13dp"
+                                android:layout_marginVertical="6dp"
+                                android:fontFamily="@font/noto_sans_kr_bold"
+
+                                android:textColor="@color/black1"
+                                android:textSize="16sp"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+                        <LinearLayout
+                            android:layout_width="50dp"
+                            android:layout_height="26dp"
+                            android:layout_marginTop="10dp"
+                            beforeValue="@{vm.averageBloodSugarList[2]}"
+                            afterValue="@{vm.averageBloodSugarList[8]}"
+                            android:gravity="center"
+                            android:orientation="horizontal">
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                beforeValue="@{vm.averageBloodSugarList[2]}"
+                                afterValue="@{vm.averageBloodSugarList[8]}"/>
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="5dp"
+                                android:fontFamily="@font/noto_sans_kr_bold"
+                                android:textColor="@color/mainColor"
+                                android:textSize="16sp"
+                                android:visibility="gone"
+                                beforeValue="@{vm.averageBloodSugarList[2]}"
+                                afterValue="@{vm.averageBloodSugarList[8]}"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="50dp"
+                            android:layout_height="26dp"
+                            android:layout_marginTop="10dp"
+                            beforeValue="@{vm.averageBloodSugarList[3]}"
+                            afterValue="@{vm.averageBloodSugarList[9]}"
+                            android:gravity="center"
+                            android:orientation="horizontal">
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                beforeValue="@{vm.averageBloodSugarList[3]}"
+                                afterValue="@{vm.averageBloodSugarList[9]}"/>
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginVertical="2dp"
+                                android:layout_marginLeft="5dp"
+                                android:fontFamily="@font/noto_sans_kr_bold"
+                                beforeValue="@{vm.averageBloodSugarList[3]}"
+                                afterValue="@{vm.averageBloodSugarList[9]}"
+                                android:textColor="@color/afternoon"
+                                android:textSize="16sp"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+                        </LinearLayout>
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="18dp">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginHorizontal="13dp"
+                                android:layout_marginVertical="6dp"
+                                android:fontFamily="@font/noto_sans_kr_bold"
+
+                                android:textColor="@color/black1"
+                                android:textSize="16sp"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+                        <LinearLayout
+                            android:layout_width="50dp"
+                            android:layout_height="27dp"
+                            android:layout_marginTop="10dp"
+                            beforeValue="@{vm.averageBloodSugarList[4]}"
+                            afterValue="@{vm.averageBloodSugarList[10]}"
+                            android:gravity="center"
+                            android:orientation="horizontal">
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                beforeValue="@{vm.averageBloodSugarList[4]}"
+                                afterValue="@{vm.averageBloodSugarList[10]}"/>
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginVertical="2dp"
+                                android:layout_marginLeft="5dp"
+                                android:fontFamily="@font/noto_sans_kr_bold"
+                                beforeValue="@{vm.averageBloodSugarList[4]}"
+                                afterValue="@{vm.averageBloodSugarList[10]}"
+                                android:textColor="@color/mainColor"
+                                android:textSize="16sp"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="50dp"
+                            android:layout_height="27dp"
+                            android:layout_marginTop="10dp"
+                            beforeValue="@{vm.averageBloodSugarList[5]}"
+                            afterValue="@{vm.averageBloodSugarList[11]}"
+                            android:gravity="center"
+                            android:orientation="horizontal">
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                beforeValue="@{vm.averageBloodSugarList[5]}"
+                                afterValue="@{vm.averageBloodSugarList[11]}"/>
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginVertical="2dp"
+                                android:layout_marginLeft="5dp"
+                                android:fontFamily="@font/noto_sans_kr_bold"
+                                beforeValue="@{vm.averageBloodSugarList[5]}"
+                                afterValue="@{vm.averageBloodSugarList[11]}"
+                                android:textColor="@color/afternoon"
+                                android:textSize="16sp"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+
+                </LinearLayout>
+                <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#dddddd" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="8dp"
+                    android:background="#eeeeee" />
+            </LinearLayout>
+        </androidx.core.widget.NestedScrollView>
+
+    </LinearLayout>
+</layout>
